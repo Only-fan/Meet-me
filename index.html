@@ -16,7 +16,7 @@
       display: none;
     }
     .btn {
-      margin-top: 20px;
+      margin: 10px;
       padding: 12px 24px;
       background: #007bff;
       color: #fff;
@@ -24,30 +24,60 @@
       border-radius: 6px;
       font-size: 18px;
       cursor: pointer;
+      display: inline-block;
+    }
+    .browser-options {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
   <div id="browserWarning" class="hidden">
-    <h2>Please Open in Your Browser</h2>
-    <p>This page doesn't work well in the Facebook app. Click the button below to continue in your browser.</p>
-    <button class="btn" onclick="openInBrowser()">Open in Browser</button>
+    <h2>For Best Experience, Open in Browser</h2>
+    <p>This page doesn't work well in the Facebook/Instagram app. Please select your browser:</p>
+    
+    <div class="browser-options">
+      <button class="btn" onclick="openInBrowser('chrome')">Chrome</button>
+      <button class="btn" onclick="openInBrowser('safari')">Safari</button>
+      <button class="btn" onclick="openInBrowser('firefox')">Firefox</button>
+      <button class="btn" onclick="openInBrowser('default')">Default Browser</button>
+    </div>
   </div>
 
   <script>
+    // Check if in Facebook/Instagram in-app browser
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     const isFacebookApp = userAgent.includes("FBAN") || userAgent.includes("FBAV") || userAgent.includes("Instagram");
 
     if (isFacebookApp) {
       document.getElementById("browserWarning").classList.remove("hidden");
     } else {
-      // Automatically redirect if not inside Facebook or Instagram browser
-      window.location.href = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
+      // Wait 3 seconds before redirecting if not in Facebook browser
+      setTimeout(() => {
+        window.location.href = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
+      }, 3000);
     }
 
-    function openInBrowser() {
-      window.location.href = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
+    function openInBrowser(browser) {
+      let url = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
+      
+      // For iOS, we can try to open in specific browser
+      if (browser === 'safari') {
+        // This will only work if Safari is available
+        url = "x-web-search://?=" + encodeURIComponent(url);
+      } else if (browser === 'chrome' && /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // Try to open in Chrome on iOS
+        url = "googlechrome://" + url.replace(/^https?:\/\//, '');
+      }
+      
+      // Try to open the URL
+      window.location.href = url;
+      
+      // Fallback in case the custom URL scheme fails
+      setTimeout(() => {
+        window.location.href = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
+      }, 500);
     }
   </script>
 </body>
