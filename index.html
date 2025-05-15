@@ -1,83 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Continue</title>
+  <meta charset="UTF-8">
+  <title>Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
       background: #000;
       color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding: 50px;
-    }
-    .hidden {
-      display: none;
-    }
-    .btn {
-      margin: 10px;
-      padding: 12px 24px;
-      background: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 18px;
-      cursor: pointer;
-      display: inline-block;
-    }
-    .browser-options {
-      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-
-  <div id="browserWarning" class="hidden">
-    <h2>For Best Experience, Open in Browser</h2>
-    <p>This page doesn't work well in the Facebook/Instagram app. Please select your browser:</p>
-    
-    <div class="browser-options">
-      <button class="btn" onclick="openInBrowser('chrome')">Chrome</button>
-      <button class="btn" onclick="openInBrowser('safari')">Safari</button>
-      <button class="btn" onclick="openInBrowser('firefox')">Firefox</button>
-      <button class="btn" onclick="openInBrowser('default')">Default Browser</button>
-    </div>
-  </div>
+  <div id="status">Checking source...</div>
 
   <script>
-    // Check if in Facebook/Instagram in-app browser
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const isFacebookApp = userAgent.includes("FBAN") || userAgent.includes("FBAV") || userAgent.includes("Instagram");
+    const ref = document.referrer.toLowerCase();
+    const ua = navigator.userAgent.toLowerCase();
 
-    if (isFacebookApp) {
-      document.getElementById("browserWarning").classList.remove("hidden");
-    } else {
-      // Wait 3 seconds before redirecting if not in Facebook browser
-      setTimeout(() => {
-        window.location.href = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
-      }, 3000);
+    const blockedSources = [
+      "facebook.com",
+      "fb",
+      "instagram.com",
+      "tiktok",
+      "meta"
+    ];
+
+    const allowedSources = [
+      "whatsapp",
+      "wa.me",
+      "telegram",
+      "twitter",
+      "reddit",
+      "pinterest"
+    ];
+
+    const adsterraLink = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
+
+    function shouldBlock() {
+      return blockedSources.some(source =>
+        ref.includes(source) || ua.includes(source)
+      );
     }
 
-    function openInBrowser(browser) {
-      let url = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
-      
-      // For iOS, we can try to open in specific browser
-      if (browser === 'safari') {
-        // This will only work if Safari is available
-        url = "x-web-search://?=" + encodeURIComponent(url);
-      } else if (browser === 'chrome' && /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        // Try to open in Chrome on iOS
-        url = "googlechrome://" + url.replace(/^https?:\/\//, '');
-      }
-      
-      // Try to open the URL
-      window.location.href = url;
-      
-      // Fallback in case the custom URL scheme fails
-      setTimeout(() => {
-        window.location.href = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
-      }, 500);
+    function shouldAllow() {
+      return allowedSources.some(source =>
+        ref.includes(source) || ua.includes(source)
+      );
+    }
+
+    if (shouldBlock()) {
+      document.body.innerHTML = ""; // blank screen for FB/IG
+    } else if (shouldAllow()) {
+      window.location.href = adsterraLink;
+    } else {
+      // fallback - optional redirect for unknown sources
+      window.location.href = adsterraLink;
     }
   </script>
 </body>
