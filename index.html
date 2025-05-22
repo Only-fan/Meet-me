@@ -2,69 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Verification</title>
+  <title>Redirecting...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #fff;
       font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       text-align: center;
+      padding: 50px;
+    }
+    .warning {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div id="status">Checking source...</div>
+  <div class="warning" id="fbWarning">
+    <h2>Notice!</h2>
+    <p>It looks like you're using Facebook's browser.</p>
+    <p>Please copy the link below and open it in Chrome or your phone's browser for better experience:</p>
+    <input type="text" value="YOUR_ADSTERRA_LINK_HERE" id="copyLink" style="width:90%;padding:10px;" readonly>
+    <br><br>
+    <button onclick="copyToClipboard()">Copy Link</button>
+  </div>
 
   <script>
-    const ref = document.referrer.toLowerCase();
-    const ua = navigator.userAgent.toLowerCase();
-
-    const blockedSources = [
-      "facebook.com",
-      "fb",
-      "instagram.com",
-      "tiktok",
-      "meta"
-    ];
-
-    const allowedSources = [
-      "whatsapp",
-      "wa.me",
-      "telegram",
-      "twitter",
-      "reddit",
-      "pinterest"
-    ];
-
-    const adsterraLink = "https://supersedeasserted.com/jmc60semv?key=d8e44b007f5a4fc5f2e96321aa7bf42c";
-
-    function shouldBlock() {
-      return blockedSources.some(source =>
-        ref.includes(source) || ua.includes(source)
-      );
+    function isFacebookBrowser() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      return ua.includes("FBAN") || ua.includes("FBAV");
     }
 
-    function shouldAllow() {
-      return allowedSources.some(source =>
-        ref.includes(source) || ua.includes(source)
-      );
+    function copyToClipboard() {
+      const copyText = document.getElementById("copyLink");
+      copyText.select();
+      document.execCommand("copy");
+      alert("Link copied! Now open your browser and paste it.");
     }
 
-    if (shouldBlock()) {
-      document.body.innerHTML = ""; // blank screen for FB/IG
-    } else if (shouldAllow()) {
-      window.location.href = adsterraLink;
+    if (isFacebookBrowser()) {
+      document.getElementById("fbWarning").style.display = "block";
     } else {
-      // fallback - optional redirect for unknown sources
-      window.location.href = adsterraLink;
+      window.location.href = "YOUR_ADSTERRA_LINK_HERE";
     }
   </script>
 </body>
