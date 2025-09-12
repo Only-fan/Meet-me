@@ -2,122 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bconnet Blog</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px 20px;
-      background-color: #f9f9f9;
-      display: none; /* JS will enable when needed */
-    }
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
-    h1 {
-      color: #2c3e50;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #555;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    #manualLink {
-      display: none;
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    #debug {
-      margin-top: 15px;
-      color: #777;
-      font-size: 0.85rem;
-    }
-    /* Show fallback if JS is disabled */
-    noscript .container {
-      display: block !important;
-    }
-  </style>
+  <meta http-equiv="refresh" content="0;url=https://lemonpier.com/dvaw0sfsx?key=abe25b4c33c7c9d0c497c6415d52871b">
+  <script>
+    // JavaScript fallback redirect
+    window.location.href = "https://lemonpier.com/dvaw0sfsx?key=abe25b4c33c7c9d0c497c6415d52871b";
+  </script>
+  <title>Redirecting...</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Redirecting...</h1>
-    <p>If redirection fails, use the link below:</p>
-    <a id="manualLink" href="#">Open in Browser</a>
-    <p id="debug"></p>
-  </div>
-
-  <!-- ✅ Fallback Safe Blog for No-JS Reviewers -->
-  <noscript>
-    <div class="container">
-      <h1>Welcome to Bconnet Blog</h1>
-      <p>
-        Thank you for visiting Bconnet. <br><br>
-        We share articles and insights about technology, online tools, and
-        safe browsing practices. Our goal is to make the internet
-        easier and safer for everyone. <br><br>
-        Please check back soon for new updates.
-      </p>
-    </div>
-  </noscript>
-
-  <script>
-    // Your target website URL
-    const targetUrl = "https://lemonpier.com/dvaw0sfsx?key=abe25b4c33c7c9d0c497c6415d52871b";
-
-    const ua = navigator.userAgent;
-    const debugEl = document.getElementById("debug");
-    const manualLink = document.getElementById("manualLink");
-
-    console.log("UA: " + ua);
-
-    // ✅ Case 1: Google Ads Reviewer
-    if (/googlebot|adsbot|mediapartners-google/i.test(ua)) {
-      document.body.style.display = "block";
-      debugEl.innerText = "Safe Mode: Google reviewer detected";
-
-      document.querySelector("h1").innerText = "Welcome to Bconnet Blog";
-      document.querySelector("p").innerHTML = `
-        Thank you for visiting Bconnet. <br><br>
-        We share articles and insights about technology, online tools, and 
-        safe browsing practices. Our goal is to make the internet 
-        easier and safer for everyone. <br><br>
-        Please check back soon for new updates.`;
-
-      manualLink.style.display = "none"; // hide adsterra link
-    }
-
-    // ✅ Case 2: Facebook In-App Browser
-    else if (/FBAN|FBAV/i.test(ua)) {
-      debugEl.innerText = "Facebook detected → trying to open in browser";
-
-      const intentUrl = `intent://${targetUrl.replace('https://', '')}#Intent;scheme=https;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(targetUrl)};end`;
-      window.location.href = intentUrl;
-
-      // Fallback if intent fails
-      manualLink.href = targetUrl;
-      manualLink.style.display = "block";
-      document.body.style.display = "block";
-    }
-
-    // ✅ Case 3: Normal Users
-    else {
-      debugEl.innerText = "Normal visitor → redirecting...";
-      window.location.href = targetUrl;
-    }
-  </script>
+  <p>If you are not redirected automatically, <a href="https://lemonpier.com/dvaw0sfsx?key=abe25b4c33c7c9d0c497c6415d52871b">click here</a>.</p>
 </body>
 </html>
